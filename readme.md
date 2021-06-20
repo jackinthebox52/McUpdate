@@ -3,6 +3,6 @@
 ## Minecraft server download and upgrade tool
 
 ### Setup
-    - mkdir(Make directory) and cd to install directory (eg. ~/mcupdater)
-    - git clone
+    1. Change directories to McUpdate install directory
+    2. Execute: git clone https://github.com/jackinthebox52/McUpdate.git
 
