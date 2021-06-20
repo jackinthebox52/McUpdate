@@ -1,4 +1,4 @@
-import shutil, unicodedata, os, subprocess, sys, requests, signal, time
+import shutil, unicodedata, os, subprocess, sys, requests, signal, time, stat
 
 VERSION = ""
 SERVER = ""
@@ -14,6 +14,7 @@ def downloadPaper():
 
     javastr = "java -Xms{0} -Xmx{1} -jar {2}paper.jar --nogui".format(RMIN, RMAX, WDIR)
     open(WDIR + 'start.sh', 'wb').write(str.encode(javastr))
+    os.chmod(WDIR + 'start.sh', stat.S_IXGRP) #CHMOD +x all  users
 
     runPaper()
     print("[MCUPDATE]: Downloaded and configured PaperMC server at " + WDIR)
@@ -33,15 +34,12 @@ def runPaper():
     p = subprocess.Popen(javastr, shell = True)
     time.sleep(30)#TODO check stdout and close when server is done
     p.kill() 
+    print("[MCUPDATE]: Closed PaperMC server")
     return
 
 def downloadSpigot():
     global WDIR
-    path = WDIR + "./spigot/"
-    try:
-        os.mkdir(path)
-    except FileExistsError:
-        shutil.rmtree(path , ignore_errors=True)
+    path = WDIR
     spigot = 'https://hub.spigotmc.org/jenkins/job/BuildTools/lastBuild/artifact/target/BuildTools.jar'
     r = requests.get(spigot, allow_redirects=True)
 
@@ -52,6 +50,7 @@ def downloadSpigot():
     else:
         subprocess.call('java -jar ' + path + 'BuildTools.jar --rev ' + VERSION, shell=True)
         return
+    cleanseFolder(path, "spigot-")
     return
 
 def acceptEULA(path):
@@ -90,13 +89,31 @@ def parseArgs():
         return
     print('Specify a minecraft version (eg. 1.16.5 || 1.17.0) or use "latest" to get the latest version. Or use "help"')
     return 'err'
+
+def cleanseFolder(directory, prefix):
+    count = 0
+    for item in os.listdir(directory):
+        path = os.path.join(directory, item)
+        if not item.startswith(prefix):
+            if os.path.isfile(path):
+                os.remove(path)
+                print("[MCUPDATE][{0}]: Deleting build file @ ".format(count) + path)
+                count += 1
+            elif os.path.isdir(os.path.join(directory, item)):
+                shutil.rmtree(path)
+                print("[MCUPDATE][{0}]: Deleting multiple build files @ ".format(count) + path)
+                count += 1
+            else:
+                print("A simlink or something called {} was not deleted.".format(item))
+
             
 def run():
     global VERSION, WDIR, SERVER
     parseArgs()
 
     if(WDIR == ""):
-        print("[WARNING]: Using current directory as working directory, this is discouraged.")
+        WDIR = "./"
+        print("[WARNING]: Using current directory as working directory, this is discouraged. And will break if you have ran the tool here before.")
     else:
         try:
             os.mkdir(WDIR)
