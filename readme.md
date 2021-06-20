@@ -1,9 +1,9 @@
-# MCUPDATE
+# MCUpdate
 
-## Minecraft server download and upgrade tool
+## Simple Minecraft server download and upgrade tool (spigot, papermc, vanilla)
 
 ### Setup
-    1. Change directory to McUpdate install directory
+    1. Change directory to MCUpdate install directory
     2. Command: git clone https://github.com/jackinthebox52/McUpdate.git
 
 ### Arguments
@@ -22,9 +22,9 @@
 
 ### INFO
     This software was written and tested on arch linux, it may not work on windows.
-    McUpdate should work on most posix operating systems that have Python 3 installed.
+    MCUpdate should work on most posix operating systems that have Python 3 installed.
 
-    McUpdate is open source, distrubuted under The MIT License.
+    MCUpdate is open source, distrubuted under The MIT License.
                             https://opensource.org/licenses/MIT
 
     
