@@ -9,16 +9,23 @@
 ### Arguments
     - Using arguments: python main.py version=x.xx.x server=paper
 
-    - Minecraft Version (eg. version=1.16.5) *
+    - Minecraft Version (eg. version=1.16.5) Must be a valid server number from the server type download page. *
     - Server Type (eg. server=paper, server=spigot) *
     - RAM To Allocate To The Server, Min and Max (eg. ram=1028M:2056M, ram=1G:2G). Defaults to 1G:1G
-    - Install Directory (eg dir=~/newserver/, wdir=/home/{user}/mcserver/) Defaults to current directory (Not recommended)
+    - Install Directory (eg dir=~/newserver/, wdir=/home/{user}/mcserver/) Defaults to ~/mcserver
 
     [ * = Required ]
     
 ### Examples
-    Bash: python main.py server=paper version=1.16.5 dir=/home/jack/testsrv/ ram=1G:1G
+    Bash: python main.py server=paper version=1.16.5 dir=/home/{user}/testsrv/ ram=1G:1G
+          python main.py server=spigot version=latest dir=./mcserver/ ram=2G:4G
 
-    (written and tested on arch linux)
+### INFO
+    This software was written and tested on arch linux, it will not work on windows. (Possible in future)
+    McUpdate should work on most posix operating systems that have Python 3 installed.
+
+    McUpdate is open source, distrubuted under The MIT License
+                           https://opensource.org/licenses/MIT
+
     
 

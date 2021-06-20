@@ -1,3 +1,12 @@
+"""
+McUpdate is open source, distrubuted under The MIT License
+                       https://opensource.org/licenses/MIT
+
+AIO Server Management Tool
+With downloads and auto-updates, and simple command line usage
+
+by https://github.com/jackinthebox52
+"""
 import shutil, unicodedata, os, subprocess, sys, requests, signal, time, stat
 
 VERSION = ""
@@ -46,10 +55,8 @@ def downloadSpigot():
     open(path + 'BuildTools.jar', 'wb').write(r.content)
     if(VERSION=="latest"):
         subprocess.call('java -jar ' + path + 'BuildTools.jar', shell=True)
-        return
     else:
         subprocess.call('java -jar ' + path + 'BuildTools.jar --rev ' + VERSION, shell=True)
-        return
     cleanseFolder(path, "spigot-")
     return
 
@@ -112,8 +119,9 @@ def run():
     parseArgs()
 
     if(WDIR == ""):
-        WDIR = "./"
-        print("[WARNING]: Using current directory as working directory, this is discouraged. And will break if you have ran the tool here before.")
+        WDIR = "~/mcserver"
+        print("[WARNING]: Using default home directory for install: ~/mcserver. Will overwrite existing directory.")
+        input("Press Enter to confirm")
     else:
         try:
             os.mkdir(WDIR)
