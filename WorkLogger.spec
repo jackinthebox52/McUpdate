@@ -5,7 +5,7 @@ block_cipher = None
 
 
 a = Analysis(['main.py'],
-             pathex=['/home/jack/Documents/McUpdateServer/McUpdate'],
+             pathex=['/home/jack/Documents/McServerUpdate'],
              binaries=[],
              datas=[],
              hiddenimports=[],

@@ -2,6 +2,7 @@
 from setuptools.command.install import install
 import os, subprocess
 import PyInstaller
+import build
 
 # my spec file in "dev\config" dir
 workdir = os.getcwd()

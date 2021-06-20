@@ -27,8 +27,6 @@ def runPaper(WDIR):
     print("[MCUPDATE]: Accepted EULA")
 
     p = subprocess.Popen(javastr, shell = True)
-    text = p.communicate()[0]
-    print(text)
     time.sleep(45)#TODO check stdout and close when server is done
     p.kill() 
     print("[MCUPDATE]: Closed PaperMC server")

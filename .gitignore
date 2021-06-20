@@ -1,4 +1,5 @@
 __pycache__/
-McUpdate.egg-info/
+WorkLogger.spec
 dist/
 build/
+.pypirc
