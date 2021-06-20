@@ -1,30 +1,17 @@
-from setuptools import setup
+#!/usr/bin/python
 from setuptools.command.install import install
-import os
+import os, subprocess
+import PyInstaller
 
-class PostInstallCommand(install):
-    """Post-installation for installation mode."""
-    def run(self):
-        install.run(self)
-        os.system("cat testing.egg-info/PKG-INFO")
+# my spec file in "dev\config" dir
+workdir = os.getcwd()
+fn_msi_spec = os.path.join(workdir, 'main_msi.spec')
 
-setup(
-    name='McUpdate',      # name of PyPI package
-    version='0.1',          # version number, update with new releases
-    description='The simplest setup in the world',
-      classifiers=[
-        'Development Status :: 0.1 - Alpha',
-        'License :: OSI Approved :: MIT License',
-        'Programming Runtime :: Python :: 3.0',
-      ],
-    author='jackinthebox52',
-    author_email='jackmassey2000@gmail.com',
-    license='MIT',
-    package_data={
-        # If any package contains *.txt files, include them:
-        "": ["*.py"],
-        # And include any *.dat files found in the "data" subdirectory
-        # of the "mypkg" package, also:
-        #"mypkg": ["data/*.dat"],
-    }
-)
+# define the "dev\dist" and "dev\build" dirs
+distdir = os.path.join(workdir, 'dist')
+builddir = os.path.join(workdir, 'build')
+
+# call pyinstaller directly
+subprocess.call("python -m PyInstaller --noconsole --name WorkLogger {0}".format('main.py'), shell = True)
+print('[MCUPDATE SETUP]: Binary built from python files')
+
