@@ -12,7 +12,7 @@
     - Minecraft Version (eg. version=1.16.5) Must be a valid server number from the server type download page. *
     - Server Type (eg. server=paper, server=spigot) *
     - RAM To Allocate To The Server, Min and Max (eg. ram=1028M:2056M, ram=1G:2G). Defaults to 1G:1G
-    - Install Directory (eg dir=~/newserver/, wdir=/home/{user}/mcserver/) Defaults to ~/mcserver
+    - Install Directory (eg dir=/home/{user}/newserver/, wdir=/home/{user}/mcserver/) Defaults to ~/mcserver
 
     [ * = Required ]
     
