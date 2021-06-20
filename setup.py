@@ -1,18 +1,14 @@
-#!/usr/bin/python
-import os, stat
 from setuptools import setup
+import os
 
 setup(
-    name='MCUpdate',      # name of PyPI package
+    name='McUpdate',      # name of PyPI package
     version='0.1',          # version number, update with new releases
-    packages=['mcupdate'] # names of packages directories
+    package_data={
+        # If any package contains *.txt files, include them:
+        "": ["*.py"],
+        # And include any *.dat files found in the "data" subdirectory
+        # of the "mypkg" package, also:
+        #"mypkg": ["data/*.dat"],
+    }
 )
-
-loc = input('Set install location. Default (/usr/local/bin/):')
-if(loc == ''):
-    loc = '/usr/local/bin/'
-
-st = os.stat('./main.py')
-os.chmod('./main.py', st.st_mode | stat.S_IEXEC) #CHMOD +x
-
-os.symlink('./main.py', loc + 'mcupdate')
