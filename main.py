@@ -1,3 +1,4 @@
+#!/usr/bin/python
 """
 McUpdate is open source, distrubuted under The MIT License
                        https://opensource.org/licenses/MIT
@@ -19,21 +20,6 @@ RMAX = "1G"
 
 def getUsername():
     return pwd.getpwuid( os.getuid() )[ 0 ]
-
-
-def acceptEULA(path):
-    os.rename(path + "eula.txt", path +"eulatmp.txt")
-    fin = open(path +"/eulatmp.txt", "rt")
-    fout = open(path +"/eula.txt", "wt")
-    #for each line in the input file
-    for line in fin:
-        #read replace the string and write to output file
-        fout.write(line.replace('eula=false', 'eula=true'))
-    #close input and output files
-    fin.close()
-    fout.close()
-    os.remove(path +"/eulatmp.txt")
-
 
 def parseArgs():
     global VERSION, SERVER, WDIR, RMIN, RMAX
@@ -75,7 +61,7 @@ def run():
     os.chdir(WDIR)
 
     if SERVER == "spigot":
-        spigot.downloadSpigot()
+        spigot.downloadSpigot(VERSION, RMIN, RMAX, WDIR)
     if SERVER == "paper":
-        paper.downloadPaper()
+        paper.downloadPaper(VERSION, RMIN, RMAX, WDIR)
 run()
