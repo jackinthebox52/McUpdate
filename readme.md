@@ -1,10 +1,16 @@
-# MCUpdate
+# MCUpdate [In Development]
 
 ## Simple Minecraft server download and upgrade tool (spigot, papermc, vanilla)
+
+### Requirements
+    - Python >= 3.0.0
+    - PIP package manager
+    - pip -r requirements.txt
 
 ### Setup
     1. Change directory to MCUpdate install directory
     2. Command: git clone https://github.com/jackinthebox52/McUpdate.git
+    3. Command ./setup.py
 
 ### Arguments
     - Using arguments: python main.py version=x.xx.x server=paper
