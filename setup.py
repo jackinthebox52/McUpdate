@@ -15,5 +15,10 @@ builddir = os.path.join(workdir, 'build')
 subprocess.call("python -m PyInstaller --noconsole --name mcupdate {0}".format('main.py'), shell = True)
 print('[MCUPDATE SETUP]: Binary built from python files.')
 
-subprocess.call("sudo ln -s {0}/mcupdate/mcupdate /usr/bin".format(distdir), shell = True)
+subprocess.call("sudo rm /usr/bin/mcupdate", shell = True)
+subprocess.call("sudo rm -r /usr/local/mcupdate", shell = True)
+print('[MCUPDATE SETUP]: 2 errors = fine!')
+
+subprocess.call("sudo mv {0}/mcupdate /usr/local".format(distdir), shell = True)
+subprocess.call("sudo ln -s /usr/local/mcupdate/mcupdate /usr/bin", shell = True)
 print("[MCUPDATE SETUP]: Setup complete. Run 'mcupdate -h for help.'")
