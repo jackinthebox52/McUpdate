@@ -3,3 +3,5 @@ WorkLogger.spec
 dist/
 build/
 .pypirc
+mcupdate.spec
+main.spec
