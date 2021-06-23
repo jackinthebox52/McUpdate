@@ -10,5 +10,5 @@ class Database:
         self.serversdb = TinyDB('/usr/local/mcupdate/db/servers.json', storage=CachingMiddleware(JSONStorage))
 
     def insertServer(self, srvtype, updatewait):
-      self.serversdb.insert({'int': 1, 'char': 'a'})
+      self.serversdb.insert({'name': 1, 'char': 'a'})
    

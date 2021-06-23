@@ -9,7 +9,7 @@ With downloads and auto-updates, and simple command line usage
 by https://github.com/jackinthebox52
 """
 import spigot, paper
-import shutil, unicodedata, os, sys, signal, stat , pwd
+import shutil, unicodedata, os, sys, signal, stat , pwd, re
 
 
 VERSION = ""
@@ -21,6 +21,13 @@ RMAX = "1G"
 def getUsername():
     return pwd.getpwuid( os.getuid() )[ 0 ]
 
+def parseVersion(s):
+    r = re.compile("^\d{1,2}\.\d{1,2}\.\d{1,2}$")
+    if len(s) <= 7:
+        if r.match(s) or s=='latest':
+            return True
+    return False
+
 def parseArgs():
     global VERSION, SERVER, WDIR, RMIN, RMAX
     arglen = len(sys.argv)
@@ -30,7 +37,11 @@ def parseArgs():
                 if a.find("=") != -1:
                     sp = a.split("=")
                     if sp[0] == "version":
-                        VERSION = sp[1]
+                        if parseVersion(sp[1]):
+                            VERSION = sp[1]
+                        else:
+                            print('[FATAL]: Version looks wrong. Refer to the server distributors website for valid build versions.')
+                            sys.exit()
                     if sp[0] == "server":
                         if sp[1] == "paper" or sp[1] == "spigot":
                             SERVER = sp[1]

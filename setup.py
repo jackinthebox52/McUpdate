@@ -1,7 +1,5 @@
 #!/usr/bin/python
-from setuptools.command.install import install
 import os, subprocess, pwd
-import PyInstaller
 
 # Spec file in 'dev\config'
 workdir = os.getcwd()
