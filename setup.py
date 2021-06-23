@@ -22,7 +22,6 @@ print('[MCUPDATE SETUP]: 2 errors = fine!')
 # Create symlink to /usr/bin
 subprocess.call("sudo mv {0}/mcupdate /usr/local".format(distdir), shell = True)
 subprocess.call("sudo ln -s /usr/local/mcupdate/mcupdate /usr/bin", shell = True)
-print('[MCUPDATE SETUP]: Installed dist to /usr/local/mcupdate/')
 
 subprocess.call("sudo mkdir /usr/local/mcupdate/db", shell = True)
 print('[MCUPDATE SETUP]: Created database dir at /usr/local/mcupdate/db')
