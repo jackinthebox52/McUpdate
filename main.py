@@ -40,6 +40,14 @@ def parseArgs():
                             RMAX = sp[1].split(":")[1]      
                     if sp[0] == "dir":
                         WDIR = sp[1]
+
+            if sys.argv[1] == "config":
+                if a.find("=") != -1:
+                    sp = a.split("=")
+                    if sp[0] == "version":
+                        VERSION = sp[1] #TODO placeholder code, replace.
+                        
+            
             if a.find("-") != -1:
                     sp = a.split("-")
                     if sp[0] == '' and (sp[1] == 'h' or sp[1] == 'help'):
