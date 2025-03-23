@@ -1,4 +1,4 @@
-# MCUpdate [In Development]
+# MCUpdate
 
 ## Simple Minecraft server download and upgrade tool (spigot, papermc, vanilla)
 
